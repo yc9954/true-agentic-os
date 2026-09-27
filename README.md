@@ -10,10 +10,6 @@
 </p>
 
 <p align="center">
-  <sub><a href="docs/readme/README.ko.md">한국어</a></sub>
-</p>
-
-<p align="center">
   <strong>One orchestrator. A fleet of real machines. Every agent works on a screen you can watch.</strong><br/>
   True Agentic OS is a desktop-style web app in which one orchestrator runs Claude Code across a fleet of<br/>
   independent Linux machines, routes each task to the machine that holds the right data or hardware,<br/>
@@ -274,7 +270,7 @@ CI runs the orchestrator typecheck, the UI build and a no-push Docker build of t
 | `node-desktop/` | The `tao-desktop` image: Dockerfile, `desktop-entrypoint.sh` (boots Xvnc, openbox, the Claude terminal, seeds roles), `agent-browse.mjs` (visible Chromium search), noVNC `clean.html`, wallpapers. |
 | `scripts/fleet-desktop.sh` | `up` / `down` / `status` / `restart` for the three demo nodes. |
 | `demo/` | Playwright scripts: `run-short-demo.mjs`, `run-demo.mjs`, `run-korean-demo.mjs`, `capture-ppt-scenes.mjs`, `verify.mjs`. |
-| `docs/` | README assets, the Korean README, and the recorded demo clips. |
+| `docs/` | README assets and the recorded demo clips. |
 | `.tao/harness/` | Where the Customize builder writes hooks, skills and agent presets (contents git-ignored). |
 | `Makefile`, `.env.example` | One-command workflows and every configurable value. |
 
