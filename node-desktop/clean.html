@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>node</title>
+    <style>
+      html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #05070a;
+        font-family: ui-monospace, Menlo, monospace; color: #6e7781; }
+      #screen { position: fixed; inset: 0; width: 100vw; height: 100vh; background: #05070a; }
+      #screen canvas { image-rendering: auto; }
+      #boot { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+        font-size: 12px; letter-spacing: 0.04em; gap: 8px; }
+      .dot { width: 7px; height: 7px; border-radius: 50%; background: #d29922; animation: pulse 1s infinite; }
+      @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+    </style>
+  </head>
+  <body>
+    <div id="screen"></div>
+    <div id="boot"><span class="dot"></span> powering on…</div>
+    <script type="module">
+      import RFB from "./core/rfb.js";
+      const proto = location.protocol === "https:" ? "wss" : "ws";
+      const url = proto + "://" + location.host + "/websockify";
+      const boot = document.getElementById("boot");
+      let rfb = null;
+      function connect() {
+        try {
+          rfb = new RFB(document.getElementById("screen"), url, { credentials: { password: "" } });
+        } catch { return void setTimeout(connect, 1500); }
+        rfb.scaleViewport = true;
+        rfb.clipViewport = false;
+        rfb.resizeSession = false;
+        rfb.showDotCursor = false;
+        rfb.background = "#0b0e14";
+        rfb.addEventListener("connect", () => { boot.style.display = "none"; });
+        rfb.addEventListener("disconnect", () => {
+          boot.style.display = "flex";
+          setTimeout(connect, 1500); // keep retrying until the desktop is up
+        });
+      }
+      connect();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+# dependencies / build output
+node_modules/
+dist/
+build/
+ui/dist/
+orchestrator/dist/
+
+# secrets — never commit Claude credentials
+secrets/
+.env
+.env.*
+!.env.example
+
+# local session state from coding assistants
+.omc/
+**/.omc/
+.claude/
+CONVERSATION_LOG.md
+
+# superseded code kept locally for reference
+legacy/
+
+# raw demo recordings (curated stills + clips live in docs/)
+recordings/
+playwright-report/
+test-results/
+
+# harness assets built from the Customize panel are local by default
+.tao/harness/**/*.sh
+.tao/harness/**/*.md
+!.tao/harness/**/.gitkeep
+
+# OS / editor
+.DS_Store
+*.log

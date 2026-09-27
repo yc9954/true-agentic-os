@@ -1,0 +1,15 @@
+{
+  "name": "tao-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "record": "node run-short-demo.mjs",
+    "record:full": "node run-demo.mjs",
+    "record:ko": "node run-korean-demo.mjs",
+    "scenes": "node capture-ppt-scenes.mjs",
+    "verify": "node verify.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.48.2"
+  }
+}
